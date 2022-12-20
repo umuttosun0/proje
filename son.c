@@ -1,3 +1,9 @@
+/*
+Umut Tosun 22181616046
+Diyar Alma 22181616048*/
+
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
