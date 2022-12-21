@@ -1,7 +1,5 @@
-/*
-Umut Tosun 22181616046
-Diyar Alma 22181616048*/
-
+// Umut Tosun 22181616046
+// Diyar Alma 22181616048
 
 
 #include <stdio.h>
@@ -21,8 +19,8 @@ srand(time(NULL)); // srand fonksiyonu ile rastgele sayiyi tek bir sayi olmaktan
 printf("\n\n");
 printf("Tas kagit makas oyununa hosgeldiniz ");
 for(i = 0; i < 3;i++){ // dongu ile kac kere oynayacigimiz belirliyoruz.
-   printf("\n\n");
-   printf("1) Tas\n2) Kagit\n3) Makas\n");
+   
+   printf("\n\n1) Tas\n2) Kagit\n3) Makas\n");
    printf("Seciminizi yapiniz.\n");
    scanf("%d",&secim);
 
@@ -64,7 +62,7 @@ else if(secim == 3 && rastgele == 3){
   
 }
 else{
-   printf("Tanimlanamayan Komut.");
+   printf("Tanimlanamayan Komut.");// Seçenek olmayan tuşlardan bir tanesine basıldığında yazılacak 
    
 }
   
@@ -85,7 +83,7 @@ printf("2)Kim Milyoner Olmak Ister Yarismasi\n\n");
 printf("Oynamak istediginiz oyunu tuslayiniz.\n");
 scanf("%d",&islem);
 
-switch (islem){
+switch (islem){//switch casedeki caselerden bir tanesi seçilerek o case girip içindeki fonksiyonu çalıştırmamızı sağlar
 case 1:
     
   bilgisayarakarsi();
@@ -97,25 +95,25 @@ case 2:
    printf("Kim milyoner olmak ister yarismasina hosgeldiniz.\n\n\n");
 
   
-    int dizi [12];
+    int dizi [12];//12 tane değişkeni dizi şeklinde tanımladık
     int basla,devam;
     
         printf("Baslamadan once kurallari hatirlatalim.\n A sikki icin 1'e, B sikki icin 2'ye, C sikki icin 3'e, D sikki icin 4'e basicaksiniz.\n");
         printf("Yarismamiza baslamak icin hazirsaniz 1'e basiniz.\n");
         scanf("%d",&basla);
 
-    if (basla == 1)
+    if (basla == 1)//istenilen tuşa basıldığında if fonksiyonuna girecek ve soru karşımıza gelecek
     {
         printf("1. sorumuz geliyor...\n1-)333'un 3 kati, 333'un 3'te birinden kac fazladir?\nA-) 0\tB-) 222\tC-) 555\tD-) 888\n");
         scanf("%d",&dizi[0]);
 
-        if( dizi[0] == 4)
+        if( dizi[0] == 4)//Değişken yandaki sayıya eşit olunca doğru cevap verildiği kabul edilecek ve printflerin içindeki metinler yazılacak
         {
             printf("Tebrikler dogru cevap verdiniz. 1000 tl kazandiniz.\n");
-            printf("Sonraki soruyu gormek icin hazirsaniz 1'e basiniz. Cekilmek istiyorsaniz 2'ye basiniz.\n");
+            printf("Sonraki soruyu gormek icin hazirsaniz 1'e basiniz. Cekilmek istiyorsaniz 1 disinda baska bir sayiya basiniz.\n");
  
         } 
-        else 
+        else //Değişken yandaki sayıya eşit olmasz ise else kısmına geçecek ve elendiğimiz yazılacak
         {
             printf("Yanlis cevap maalesef elendiniz.");
 
@@ -126,7 +124,7 @@ case 2:
             scanf("%d",&devam);
             
 
-        if (devam == 1)
+        if (devam == 1)// koşul sağlanırsa 2. sorumuza geçeceğiz 
     {
             printf("2. sorumuz geliyor...\n2-)NBA'in efsanelerinden birisi olan Kobe Bryant'in efsanesi oldugu takim hangisidir ?\nA-) Boston Celtics\tB-) Los Angeles Lakers\tC-) Sixers\tD-) Bulls\n");
             scanf("%d",&dizi[1]);
@@ -134,7 +132,7 @@ case 2:
         if(dizi[1] == 2)
         {
             printf("Tebrikler dogru cevap 2000 tl kazandiniz.\n");
-            printf("Sonraki soruyu gormek icin hazirsaniz 1'e basiniz. Cekilmek istiyorsaniz 2'ye basiniz.\n");
+            printf("Sonraki soruyu gormek icin hazirsaniz 1'e basiniz. Cekilmek istiyorsaniz 1 disinda baska bir sayiya basiniz.\n");
  
         } 
         else 
@@ -144,7 +142,7 @@ case 2:
             break;
         }    
     }
-    else
+    else// Eğer çekilmek istersek alacağımız miktarı gösterir
     {
         printf("1000 tl kazandiniz. Tebrikler");
         break;
@@ -162,7 +160,7 @@ case 2:
         if (dizi[2] == 3)
         {
             printf("Tebrikler dogru cevap 3000 tl kazandiniz.");
-            printf("Sonraki soruyu gormek icin hazirsaniz 1'e basiniz. Cekilmek istiyorsaniz 2'ye basiniz.\n");
+            printf("Sonraki soruyu gormek icin hazirsaniz 1'e basiniz. Cekilmek istiyorsaniz 1 disinda baska bir sayiya basiniz.\n");
  
         } 
        else
@@ -188,7 +186,7 @@ case 2:
         if(dizi[3] == 1)
         {
             printf("Tebrikler dogru cevap 5000 tl kazandiniz.");
-            printf("Sonraki soruyu gormek icin hazirsaniz 1'e basiniz. Cekilmek istiyorsaniz 2'ye basiniz.\n");
+            printf("Sonraki soruyu gormek icin hazirsaniz 1'e basiniz. Cekilmek istiyorsaniz 1 disinda baska bir sayiya basiniz.\n");
  
         } 
         else
@@ -213,7 +211,7 @@ case 2:
         if(dizi[4] == 3)
         {
             printf("Tebrikler dogru cevap 7500 tl kazandiniz.");
-            printf("Sonraki soruyu gormek icin hazirsaniz 1'e basiniz. Cekilmek istiyorsaniz 2'ye basiniz.\n");
+            printf("Sonraki soruyu gormek icin hazirsaniz 1'e basiniz. Cekilmek istiyorsaniz 1 disinda baska bir sayiya basiniz.\n");
  
         } 
         else 
@@ -238,7 +236,7 @@ case 2:
         if(dizi[5] == 4)
         {
             printf("Tebrikler dogru cevap 10000 tl kazandiniz.");
-            printf("Sonraki soruyu gormek icin hazirsaniz 1'e basiniz. Cekilmek istiyorsaniz 2'ye basiniz.\n");
+            printf("Sonraki soruyu gormek icin hazirsaniz 1'e basiniz. Cekilmek istiyorsaniz 1 disinda baska bir sayiya basiniz.\n");
  
         } 
         else 
@@ -263,7 +261,7 @@ case 2:
         if(dizi[6] == 4)
         {
             printf("Tebrikler dogru cevap 30000 tl kazandiniz.");
-            printf("Sonraki soruyu gormek icin hazirsaniz 1'e basiniz. Cekilmek istiyorsaniz 2'ye basiniz.\n");
+            printf("Sonraki soruyu gormek icin hazirsaniz 1'e basiniz. Cekilmek istiyorsaniz 1 disinda baska bir sayiya basiniz.\n");
  
         } 
         else
@@ -288,7 +286,7 @@ case 2:
         if(dizi[7] == 2)
         {
             printf("Tebrikler dogru cevap 50000 tl kazandiniz.");
-            printf("Sonraki soruyu gormek icin hazirsaniz 1'e basiniz. Cekilmek istiyorsaniz 2'ye basiniz.\n");
+            printf("Sonraki soruyu gormek icin hazirsaniz 1'e basiniz. Cekilmek istiyorsaniz 1 disinda baska bir sayiya basiniz.\n");
  
         }
         else 
@@ -313,7 +311,7 @@ case 2:
         if(dizi[8] == 3)
         {
             printf("Tebrikler dogru cevap 100000tl kazandiniz.");
-            printf("Sonraki soruyu gormek icin hazirsaniz 1'e basiniz. Cekilmek istiyorsaniz 2'ye basiniz.\n");
+            printf("Sonraki soruyu gormek icin hazirsaniz 1'e basiniz. Cekilmek istiyorsaniz 1 disinda baska bir sayiya basiniz.\n");
  
         } 
         else 
@@ -338,7 +336,7 @@ case 2:
         if(dizi[9] == 3)
         {
             printf("Tebrikler dogru cevap 200000 tl kazandiniz.");
-            printf("Sonraki soruyu gormek icin hazirsaniz 1'e basiniz. Cekilmek istiyorsaniz 2'ye basiniz.\n");
+            printf("Sonraki soruyu gormek icin hazirsaniz 1'e basiniz. Cekilmek istiyorsaniz 1 disinda baska bir sayiya basiniz.\n");
  
  
         } 
@@ -358,13 +356,13 @@ case 2:
 
           if (devam == 1)
     {
-            printf("11. sorumuz geliyor...\n11-)Hangi unlu universite mezunudur ?\nA-) Recep Tayyip Erdogan\tB-) Bulent Ecevit\tC-) Tarkan Tevetoglu\tD-) Kadir Inanir\n");
+            printf("11. sorumuz geliyor...\n11-)Bir röportajda biyografisini anlatirken -1931'de doğdum. 1937'de annem öldü- diyen Cemal Süreya hangisini söyledikten sonra -O gün bugün huzurum yoktur- demiştir ?\nA-) 1941'de Orhan Veli'yi okudum\tB-) 1942'de George Orwell'i okudum\tC-) 1943'te Tanpinar'i okudum\tD-) 1944'te Dostoyevski'yi okudum\n");
             scanf("%d",&dizi[10]);
 
         if(dizi[10] == 4)
         {
             printf("Tebrikler dogru cevap 400000 tl kazandiniz.");
-            printf("Sonraki soruyu gormek icin hazirsaniz 1'e basiniz. Cekilmek istiyorsaniz 2'ye basiniz.\n");
+            printf("Sonraki soruyu gormek icin hazirsaniz 1'e basiniz. Cekilmek istiyorsaniz 1 disinda baska bir sayiya basiniz.\n");
  
         } 
         else 
