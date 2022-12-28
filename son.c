@@ -1,412 +1,276 @@
-// Umut Tosun 22181616046
-// Diyar Alma 22181616048
-
-
 #include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
+#include <string.h>
+#include <stdbool.h>
+#include<stdlib.h>
+
+void KayitVeyaGiris();
+ 
 
 
-void bilgisayarakarsi(){ // bilgisayara karsi tas-kagit-makas oyunu fonksiyonu.
-/* ustunlukler ;
-tas > makas
-makas > kagit
-kagit > tas
-*/
-int i,secim,rastgele;
-int skorunuz = 0,bilgisayarskoru = 0;
-srand(time(NULL)); // srand fonksiyonu ile rastgele sayiyi tek bir sayi olmaktan cikariyoruz.
-printf("\n\n");
-printf("Tas kagit makas oyununa hosgeldiniz ");
-for(i = 0; i < 3;i++){ // dongu ile kac kere oynayacigimiz belirliyoruz.
+
+void HosgeldinizFonksiyonu()//Uygulamamiz calistiginda bizi ilk karsilayacak hosgeldin mesaji.
+{
+printf("---------- AST Oto Kiralama'ya Hosgeldiniz ----------\n\n"
+"      Ust Duzey Konfor Ve Kalitenin Tek Adresi\n\n"
+"--------------------   SINCE 2003 -------------------- ");
+
+}
+
+struct araba//araba marka,model,fiyat ve id'sini tuttuğumuz yapı.
+{
+   char araba_marka[20];
    
-   printf("\n\n1) Tas\n2) Kagit\n3) Makas\n");
-   printf("Seciminizi yapiniz.\n");
-   scanf("%d",&secim);
-
-rastgele = (rand()%3) + 1;// rand fonksiyonu ile rastgele adinda rastgele sayilar alan bir int degeri belirliyoruz.
-//rastgele sayi 1,2 ve 3 degerlerinden biri olsun diye rastgele secilen sayiyi 3 bolup 1 ile topluyoruz.
-
-if(secim == 1 && rastgele ==1){//kosul ifadeleri ile tercihlere gore kazanani belirliyoruz.
-   printf("Ayni secimi yaptiniz. Bu tur berabere.");
-}
-else if (secim == 1 && rastgele == 2){
-   printf("Kagit tasi sarar. Bu turun kazanani bilgisayar.");
-   bilgisayarskoru++;
-}
-else if(secim == 1 && rastgele == 3){
-   printf("Tas makasi parcalar. Bu turun kazanani sizsiniz.");
-   skorunuz++;
-}
-else if(secim == 2 && rastgele == 1){
-   printf("Kagit tasi sarar. Bu turun kazanani sizsiniz.");
-   skorunuz++;
-}
-else if(secim == 2 && rastgele == 2){
-   printf("Ayni secimi yaptiniz. Bu tur berabere.");
-}
-else if(secim == 2 && rastgele == 3){
-   printf("Makas kagiti keser. Bu turun kazanani bilgisayar.");
-   bilgisayarskoru++;
-} 
-else if(secim == 3 && rastgele == 1){
-   printf("Tas makasi parcalar. Bu turun kazanani bilgisayar.");
-   bilgisayarskoru++;
-}
-else if (secim == 3 && rastgele == 2){
-   printf("Makas kagiti keser. Bu turun kazanani sizsiniz.");
-   skorunuz++;
-}
-else if(secim == 3 && rastgele == 3){
-   printf("Ayni secimi yaptiniz. Bu tur berabere.");
-  
-}
-else{
-   printf("Tanimlanamayan Komut.");// Seçenek olmayan tuşlardan bir tanesine basıldığında yazılacak 
+   char araba_model[20];
    
-}
+   int araba_fiyat;
+   
+   int araba_id;
+};
+
+struct Account//hesap bilgilerimizi tuttuğumuz yapı.
+{
+   char name[20];
+ 
+   char pass[20];
+};
+
+// kiralayacagimiz araclarin araba yapisi icerisine yazdigimiz yapi dizisi.
+struct araba dizi_araba[15] = { 
+   {" Audi",    "  A4\t\t",           670,     1},
+   {" Jaguar",  "  F-PACE\t",       1350,    2},
+   {" Fiat"  ,  "  Egea\t\t",         400,     3},
+   {" Ford"  ,  "  Focus\t",        550,     4},
+   {" Mazda"  , "  CX-5\t",         700,     5},
+   {" Maserati","  Levante\t",      1600,    6},
+   {" Tata"  ,  "  Xenon\t",        750,     7},
+   {" Tesla"  , "  Model-Y\t",      1550,    8},
+   {" Volkswagen","Passat\t",       1250,    9},
+   {" Renault"  ," Clio\t",         550,     10},
+   {" Cadillac"  ,"Escalade\t",     2400,    11},
+   {" Dacia"  ,"   Duster\t",       870,     12},
+   {" Skoda"  ,"   Superb\t",       650,     13},
+   {" Mercedes"  ,"CLS\t",          1250,    14},
+   {" BMW"  ,"     i8\t",           1800,    15},
   
+};
+void BilgiFonksiyonu()// firma ve araclarin durumu hakkinda bilgi iceren metin fonksiyonu.
+{
+   printf("\n\nOtomobillerimizin tamami aylik rutin bakimlarindan gecmektedir.\nHerhangi bir kazaya karsi hem size gelecek zarari"
+          " hem de araclarimizin masraflarini karsilayan bir sigorta sirketiyle anlasmamiz vardir.\n"
+          "Otomobillerimiz gunluk temizlenmekte olup ile sizlere daha kaliteli hizmet vermek icin ugrasmaktayiz.\n"
+          "Otomobillerimizde HGS(Hizli Gecis Sistemi) bulunmaktadir.\nIyi yolculuklara dileriz.\n\n");
 }
 
+void Login()// var olan bir hesaba giris yaptigimizda gerceklesecek islemleri iceren giris fonksiyonu.
+{
+   char istenecek_isim[20];
+  
+   char istenecek_parola[20];
 
-printf("\n\nSkor Tablosu:\nSiz %d-%d Bilgisayar\n",skorunuz,bilgisayarskoru);
+   printf("\nKullanici isminizi giriniz: ");
+   scanf("%s",&istenecek_isim);
+
+   printf("\n\nSifrenizi giriniz: ");
+   scanf("%s",&istenecek_parola);
+
+FILE *sc;
+   struct Account acc;
+   bool x = true;
+
+   sc = fopen("userInfo.txt","r");
+
+      while(!feof(sc)){
+         fscanf(sc,"%s %s",&acc.name,&acc.pass);
+
+            if(strcmp(istenecek_isim,acc.name)==0 && strcmp(istenecek_parola,acc.pass)==0){
+            printf("\n\nUygulamamiza tekrar hosgeldiniz %s \n\n",acc.name);
+            x = false;
+      break;
+            }
+      }
+
+         if(x){
+            printf("\n\nKullanici ismi veya sifreniz hatalidir. Lutfen tekrar deneyiniz.\n\n");
+            KayitVeyaGiris();
+         }
+fclose(sc);
+
+
+}
+
+void CreateAccount(){  // yeni bir hesap olusturmak icin izleyecegimiz yollari iceren hesap olusturma fonksiyonu.
+   
+      char istenecek_isim[20];
+      char istenecek_parola[20];
+      char e_mail[20];                   // hesap olusturmak icin atadigimiz verileri tutacak degiskenler.
+                     
+      int bakiye = 0;
+
+      printf("\n\nBir kullanici adi giriniz: ");
+      scanf("%s",&istenecek_isim);
+
+      printf("\nGiris yapmak icin sifrenizi olusturunuz: ");
+      scanf("%s",&istenecek_parola);                               // hesap olusturmak icin kullanicinin verilerini aldimiz scanf'ler.
+
+      printf("\nE mail adresinizi giriniz: ");
+      scanf("%s",&e_mail);
+
+     
+
+
+FILE *fptr;                                  //fptr adinda bir dosya tanimliyoruz.
+   fptr = fopen("userInfo.txt","a");         //dosyayi fopen() fonksiyonu ile aciyoruz.
+
+      if(fptr == NULL){                     // dosyanin acilip acilmadigini kontrol ediyoruz.
+         
+         printf("Error!!!");              
+         exit(1);
+      }
+
+      fprintf(fptr,"\n%s %s %s %d",istenecek_isim,istenecek_parola,e_mail);  // fptr olarak tanimladigimiz dosyaya kullanici verilerini yazdiriyoruz.
+      printf("Hosgeldiniz  %s\t",istenecek_isim);
+   fclose(fptr);           // dosya islemlerini tamamladigimiz icin dosyamizi fclose() fonksiyonu yardimi ile kapatiyoruz.
+             
+
+}
+
+void KayitVeyaGiris(){  // giris yap veya kayit ol menusunu iceren ve secim ile yapacagimiz islemin bulundugu fonksiyon.
+   
+   int secim;
+   
+   for(;;){
+      
+      printf("\n\nUygulamamiza giris yapmak icin 1'i tuslayiniz.\n\nEger giris yapacak bir hesabiniz bulunmuyorsa kayit olmak icin 2'yi tuslayiniz.\n\n");
+      printf("\t[1] Giris yap\t\t[2] Kayit ol\n");
+      scanf("%d",&secim);
+
+         if(secim == 1){
+           
+            Login();
+         break;
+         }
+         else if(secim ==2){
+           
+            CreateAccount();
+         break;
+         }
+         else{
+        
+            printf("Yanlis secim yaptiniz tekrar deneyiniz.\n");
+         }
+   }
+}
+
+void faturakaydet(char marka[20],char model[20],int bakiye){ // kiralanan araclarin kaydini tuttugumuz fatura fonksiyonu.
+   
+  
+   FILE *fptr;
+      fptr = fopen("fatura.txt","a");  
+   
+      if(fptr == NULL){
+      
+         printf("Error!!!");
+         exit(1);
+      }
+
+   fprintf(fptr,"Araba Markasi : %s, Kiraladagimiz model: %s Guncel Bakiyeniz: %d\n",marka,model,bakiye);
+   fclose(fptr);
+
 }
 
 int main(){
-
-int islem;
-
-
-printf("\n\n1)Tas Kagit Makas Oyunu (Bilgisayara Karsi)\n");
-printf("2)Kim Milyoner Olmak Ister Yarismasi\n\n");
-
-printf("Oynamak istediginiz oyunu tuslayiniz.\n");
-scanf("%d",&islem);
-
-switch (islem){//switch casedeki caselerden bir tanesi seçilerek o case girip içindeki fonksiyonu çalıştırmamızı sağlar
-case 1:
-    
-  bilgisayarakarsi();
-
-   break;
    
-case 2:
+   int bakiye = 0;
+   int yatirilacakpara;
+   char istenecek_isim[20];
+   char istenecek_parola[20];
+   char e_mail[20];                 // islem gerceklestirecegimiz degiskenlerimizi tanimliyoruz.
    
-   printf("Kim milyoner olmak ister yarismasina hosgeldiniz.\n\n\n");
+   int secim;
+   int arabasecimi;
+   int i;
+   
+   
+  
+
+   HosgeldinizFonksiyonu();
+   KayitVeyaGiris();
+   
+   /*
+   baslangic degerini belirlemedigimiz ancak bitis durumlarini kosullar ile olusturdugumuz, para yatirma,arac kiralama, otomobil bilgileri ve cikis 
+   islemlerini iceren dongumuz.
+   */
 
   
-    int dizi [12];//12 tane değişkeni dizi şeklinde tanımladık
-    int basla,devam;
-    
-        printf("Baslamadan once kurallari hatirlatalim.\n A sikki icin 1'e, B sikki icin 2'ye, C sikki icin 3'e, D sikki icin 4'e basicaksiniz.\n");
-        printf("Yarismamiza baslamak icin hazirsaniz 1'e basiniz.\n");
-        scanf("%d",&basla);
+   for(;;){ 
+      
+      
+      printf("Asagidaki islemlerden yapmak isteginizi seciniz\n\n\n\t\t\t\t\t\t\tMevcut Bakiyeniz: %d tl\n[1] Para Yatirma\n[2] Gunluk Otomobil Kiralama\n[3] Otomobil Bilgileri ve Haklar"
+      "\n[4] Uygulamadan Cikis\n\nSeceneklerden birini seciniz: ",bakiye);
+      scanf("%d",&secim);
 
-    if (basla == 1)//istenilen tuşa basıldığında if fonksiyonuna girecek ve soru karşımıza gelecek
-    {
-        printf("1. sorumuz geliyor...\n1-)333'un 3 kati, 333'un 3'te birinden kac fazladir?\nA-) 0\tB-) 222\tC-) 555\tD-) 888\n");
-        scanf("%d",&dizi[0]);
-
-        if( dizi[0] == 4)//Değişken yandaki sayıya eşit olunca doğru cevap verildiği kabul edilecek ve printflerin içindeki metinler yazılacak
-        {
-            printf("Tebrikler dogru cevap verdiniz. 1000 tl kazandiniz.\n");
-            printf("Sonraki soruyu gormek icin hazirsaniz 1'e basiniz. Cekilmek istiyorsaniz 1 disinda baska bir sayiya basiniz.\n");
- 
-        } 
-        else //Değişken yandaki sayıya eşit olmasz ise else kısmına geçecek ve elendiğimiz yazılacak
-        {
-            printf("Yanlis cevap maalesef elendiniz.");
-
-            break;
-        }
-    }
-    
-            scanf("%d",&devam);
+         if(secim == 1){  // secim 1 ile para yatirma islemini gerceklestirdigimiz kosul bolumu.
+   
+            printf("\nPara Yatirma Islemini Sectiniz.\n\n\nHesabiniza ne kadar yatirmak istersiniz: ");
+            scanf("%d",&yatirilacakpara); 
+            if (yatirilacakpara > 0) // negatif bir tutar eklememek icin belirledigimiz kosul.
+            {
+               bakiye += yatirilacakpara;
+               printf("\n\nPara yatirma isleminiz basarili bir sekilde tamamlanmistir.\n\nYatirdiginiz miktar: %d tl\n\nMevcut bakiyeniz: %d tl\n\n",yatirilacakpara,bakiye);
+            }
+            else
+            {
+               printf("\nGecerli bir sayi giriniz.\n\n");
+            }
             
-
-        if (devam == 1)// koşul sağlanırsa 2. sorumuza geçeceğiz 
-    {
-            printf("2. sorumuz geliyor...\n2-)NBA'in efsanelerinden birisi olan Kobe Bryant'in efsanesi oldugu takim hangisidir ?\nA-) Boston Celtics\tB-) Los Angeles Lakers\tC-) Sixers\tD-) Bulls\n");
-            scanf("%d",&dizi[1]);
-
-        if(dizi[1] == 2)
-        {
-            printf("Tebrikler dogru cevap 2000 tl kazandiniz.\n");
-            printf("Sonraki soruyu gormek icin hazirsaniz 1'e basiniz. Cekilmek istiyorsaniz 1 disinda baska bir sayiya basiniz.\n");
- 
-        } 
-        else 
-        {
-            printf("Yanlis cevap maalesef elendiniz.");
-
-            break;
-        }    
-    }
-    else// Eğer çekilmek istersek alacağımız miktarı gösterir
-    {
-        printf("1000 tl kazandiniz. Tebrikler");
-        break;
-    }
-    
-    
-            scanf("%d",&devam);
-
-
-        if (devam == 1)
-    {
-            printf("3. sorumuz geliyor...\n3-)Mustafa Kemal ATATURK kac yasinda vefat etmistir ?\nA-) 55\tB-) 59\tC-) 57\tD-) 56\n");
-            scanf("%d",&dizi[2]);
-    
-        if (dizi[2] == 3)
-        {
-            printf("Tebrikler dogru cevap 3000 tl kazandiniz.");
-            printf("Sonraki soruyu gormek icin hazirsaniz 1'e basiniz. Cekilmek istiyorsaniz 1 disinda baska bir sayiya basiniz.\n");
- 
-        } 
-       else
-        { 
-       
-            printf("Yanlis cevap maalesef elendiniz.");
             
-            break;
-        }    
-    }
-    else
-    {
-        printf("2000 tl kazandiniz. Tebrikler");
-        break;
-    }
-            scanf("%d",&devam);
-
-        if (devam == 1)
-    {
-            printf("4. sorumuz geliyor...\n4-)Dunyanin 7 harikasi olarak bilinen yapilardan son ayakta kalani hangisidir ?\nA-) Keops piramidi\tB-) Babilin Asma Bahceleri\tC-) Artemis tapinagi\tD-) Zeus Heykeli\n");
-            scanf("%d",&dizi[3]);
-
-        if(dizi[3] == 1)
-        {
-            printf("Tebrikler dogru cevap 5000 tl kazandiniz.");
-            printf("Sonraki soruyu gormek icin hazirsaniz 1'e basiniz. Cekilmek istiyorsaniz 1 disinda baska bir sayiya basiniz.\n");
- 
-        } 
-        else
-        { 
-            printf("Yanlis cevap maalesef elendiniz.");
-
-            break;
-        }    
-    }
-    else
-    {
-        printf("3000 tl kazandiniz. Tebrikler");
-        break;
-    }
-            scanf("%d",&devam);
-
-        if (devam == 1)
-    {
-            printf("5. sorumuz geliyor...\n5-)Yedi renkten olusan gokkusaginin ortasindaki renk hangisidir ?\nA-) Mavi\tB-) Kirmizi\tC-) Yesil\tD-) Mor\n");
-            scanf("%d",&dizi[4]);
-
-        if(dizi[4] == 3)
-        {
-            printf("Tebrikler dogru cevap 7500 tl kazandiniz.");
-            printf("Sonraki soruyu gormek icin hazirsaniz 1'e basiniz. Cekilmek istiyorsaniz 1 disinda baska bir sayiya basiniz.\n");
- 
-        } 
-        else 
-        {
-            printf("Yanlis cevap maalesef elendiniz.");
-
-            break;
-        }
-    }
-    else
-    {
-        printf("5000 tl kazandiniz. Tebrikler");
-        break;
-    }
-            scanf("%d",&devam);
-
-        if (devam == 1)
-    {
-            printf("6. sorumuz geliyor...\n6-)Hangisi MFO uyeleri Mazhar Alanson, Fuat Guner ve Ozkan Ugur'un birinci ya da ikinci adlarindan biri degildir ?\nA-) Aziz\tB-) Mahmut\tC-) Raif\tD-) Faik\n");
-            scanf("%d",&dizi[5]);
-
-        if(dizi[5] == 4)
-        {
-            printf("Tebrikler dogru cevap 10000 tl kazandiniz.");
-            printf("Sonraki soruyu gormek icin hazirsaniz 1'e basiniz. Cekilmek istiyorsaniz 1 disinda baska bir sayiya basiniz.\n");
- 
-        } 
-        else 
-        {
-            printf("Yanlis cevap maalesef elendiniz.");
-
-            break;
-        }
-    }
-    else
-    {
-        printf("7500 tl kazandiniz. Tebrikler");
-        break;
-    }
-            scanf("%d",&devam);
-
-        if (devam == 1)
-    {
-            printf("7. sorumuz geliyor...\n7-) I. Dunya Savasi sirasinda cephedeki yaralilarin hastaneye tasinmasinin zor olmasindan dolayi, icinde rontgen cihazi olan araclar tasarlayip hizmete sunan kisi kimdir?\nA-) Edison\tB-) Wilhelm Rontgen\tC-) Nikola Tesla\tD-) Marie Cruie\n");   
-            scanf("%d",&dizi[6]);
-
-        if(dizi[6] == 4)
-        {
-            printf("Tebrikler dogru cevap 30000 tl kazandiniz.");
-            printf("Sonraki soruyu gormek icin hazirsaniz 1'e basiniz. Cekilmek istiyorsaniz 1 disinda baska bir sayiya basiniz.\n");
- 
-        } 
-        else
-        { 
-            printf("Yanlis cevap maalesef elendiniz.");
-
-            break;
-        }
-    }
-    else
-    {
-        printf("10000 tl kazandiniz. Tebrikler");
-        break;
-    }
-            scanf("%d",&devam);
-
-        if (devam == 1)
-    {
-            printf("8. sorumuz geliyor...\n8-)Hangisi, en iyi film oscar odulunu kazanmistir?\nA-) Pulp Fiction\tB-) No Country for Old Men\tC-) The Wolf of Wall Street\tD-) Saving Pirate Ryan\n ");
-            scanf("%d",&dizi[7]);
-
-        if(dizi[7] == 2)
-        {
-            printf("Tebrikler dogru cevap 50000 tl kazandiniz.");
-            printf("Sonraki soruyu gormek icin hazirsaniz 1'e basiniz. Cekilmek istiyorsaniz 1 disinda baska bir sayiya basiniz.\n");
- 
-        }
-        else 
-        {
-            printf("Yanlis cevap maalesef elendiniz.");
-
-            break;
-        }
-    }
-    else
-    {
-        printf("30000 tl kazandiniz. Tebrikler");
-        break;
-    }
-            scanf("%d",&devam);
-
-        if (devam == 1)
-    {
-            printf("9. sorumuz geliyor...\n9-)1959'da New York'taki bir sampiyonaya erkek kiliginda katilan Rena Kanogoki, hangi alanda altin madalya kazanmis ve kadin oldugu anlasilinca madalyasini iade etmek zorunda kalmistir ?\nA-) Satranc\tB-) Eskrim\tC-) Judo\tD-) Okculuk\n");
-            scanf("%d",&dizi[8]);
-
-        if(dizi[8] == 3)
-        {
-            printf("Tebrikler dogru cevap 100000tl kazandiniz.");
-            printf("Sonraki soruyu gormek icin hazirsaniz 1'e basiniz. Cekilmek istiyorsaniz 1 disinda baska bir sayiya basiniz.\n");
- 
-        } 
-        else 
-        {
-            printf("Yanlis cevap maalesef elendiniz.");
-
-            break;
-        }
-    }
-    else
-    {
-        printf("50000 tl kazandiniz. Tebrikler");
-        break;
-    }
-            scanf("%d",&devam);
-
-          if (devam == 1)
-    {
-            printf("10. sorumuz geliyor...\n10-)Dunning-Kruger etkisi, halk arasinda kullanilan hangi ifadenin bilimsel aciklamasini sunar ?\nA-) Acemi Sansi\tB-) Zugurt Tesellisi\tC-) Cahil Cesareti\tD-) Amator Ruh\n ");
-            scanf("%d",&dizi[9]);
-
-        if(dizi[9] == 3)
-        {
-            printf("Tebrikler dogru cevap 200000 tl kazandiniz.");
-            printf("Sonraki soruyu gormek icin hazirsaniz 1'e basiniz. Cekilmek istiyorsaniz 1 disinda baska bir sayiya basiniz.\n");
- 
- 
-        } 
-        else 
-        {
-            printf("Yanlis cevap maalesef elendiniz.");
-
-            break;
-        }
-    }
-    else
-    {
-        printf("100000 tl kazandiniz. Tebrikler");
-        break;
-    }
-            scanf("%d",&devam);
-
-          if (devam == 1)
-    {
-            printf("11. sorumuz geliyor...\n11-)Bir röportajda biyografisini anlatirken -1931'de doğdum. 1937'de annem öldü- diyen Cemal Süreya hangisini söyledikten sonra -O gün bugün huzurum yoktur- demiştir ?\nA-) 1941'de Orhan Veli'yi okudum\tB-) 1942'de George Orwell'i okudum\tC-) 1943'te Tanpinar'i okudum\tD-) 1944'te Dostoyevski'yi okudum\n");
-            scanf("%d",&dizi[10]);
-
-        if(dizi[10] == 4)
-        {
-            printf("Tebrikler dogru cevap 400000 tl kazandiniz.");
-            printf("Sonraki soruyu gormek icin hazirsaniz 1'e basiniz. Cekilmek istiyorsaniz 1 disinda baska bir sayiya basiniz.\n");
- 
-        } 
-        else 
-        {
-            printf("Yanlis cevap maalesef elendiniz.");
-
-            break;
-        }
-    }
-    else
-    {
-        printf("200000 tl kazandiniz. Tebrikler");
-        break;
-    }
-            scanf("%d",&devam);
-
-        if (devam == 1)
-    {
-            printf("12. sorumuz geliyor...\n12-)Temmuz 1889'da Istanbul'dan Japonya'ya hareket eden ve donus yolunda batan Ertugrul Firkateyni, 1890 yilinda Japonya'ya ulastiginda Japonya'nin imparatoru kimdir?\nA-) Komei\tB-) Meiji\tC-) Taiso\tD-) Hirahito\n");
-            scanf("%d",&dizi[11]);
-
-        if(dizi[11] == 2)
-        {
-            printf("Tebrikler dogru cevap 1000000 tl kazandiniz.");
-           
-        } 
-        else 
-        {
-            printf("Yanlis cevap maalesef elendiniz.");
-
-            break;
-        }
-    }
-        else
-     {
-        printf("400000 tl kazandiniz. Tebrikler");
-        break;
-     }
-            scanf("%d",&devam);
             
-            default : 
+             }
+         else if(secim == 2){   // otomobil kiralama islemlerini gerceklestirdigimiz kosul bolumu.
+                          
+            printf("\nGunluk Otomobil Kiralama Islemini Sectiniz.\n\n\nKiralamaya uygun durumdaki mevcut arabalarimiz asagida gozukmektedir.\n");
+         
 
-printf("Tanimlanamayan Islem."); 
-break;
-}
+            for(i = 0; i < 15; i++){
+                // kiralamaya uygun araclarin yazdirilma islemi.
+               printf("\n %d %s %s %d ",dizi_araba[i].araba_id,dizi_araba[i].araba_marka,dizi_araba[i].araba_model,dizi_araba[i].araba_fiyat);
 
+             }     
+      
+         printf("\n\nGuncel bakiyeniz: %d tl\n",bakiye);  // mevcut bakiye bilgisini yazdirma islemi.
+
+         printf("\nLutfen kiralamak istediginiz otomobili seciniz: ");
+         scanf("%d",&arabasecimi);
+         --arabasecimi;
+
+            if(bakiye >= dizi_araba[arabasecimi].araba_fiyat){  // bakiyenin arac kiralama ucretinden fazla olmasini kontrol eden kosul islemi.
+               
+               printf("\nSecmis oldugunuz otomobil: %s %s ",dizi_araba[arabasecimi].araba_marka,dizi_araba[arabasecimi].araba_model);
+               bakiye = bakiye - dizi_araba[arabasecimi].araba_fiyat;
+               printf("\n\nMevcut bakiyeniz: %d tl",bakiye);
+          
+                                    
+               faturakaydet(dizi_araba[arabasecimi].araba_marka,dizi_araba[arabasecimi].araba_model,bakiye); // kiralanan aracin kaydinin tutuldugu islem.
+               printf("\n\nKiralama isleminiz basariyla tamamlanmistir.\n\nBizi tercih ettiginiz icin tesekkur ederiz.\n");
+      continue;
+      }
+         else{
+            printf("\nHesabinizda yeterli miktarda bakiyeniz yoktur. Baska bir otomobilimizi secebilir ya da hesabiniza yukleme yapabilirsiniz.\n\n\n");
+         }
+
+
+   }
+   else if(secim == 3){
+      BilgiFonksiyonu();   // 3 numarali secim ile firma ve araclar hakkinda bilgi iceren fonksiyona yonlendirilme islemi.
+   }                               
+   else if(secim == 4){
+      printf("\n\nAraba kiralama konusunda kalitenin adresini sectiginiz icin tesekkur ederiz.\n\nAST Oto Kiralama Iyi Yolculuklar Diler."); // cikis islemi.
+   break; 
+   } 
+   else{
+      printf("\n\nYanlis secim yaptiniz tekrar deneyiniz.\n\n");  // sunulan seceneklerden farkli tuslama girildiginde yazdirilan cumle.
+   }
+
+   }
+   return 0;
 }
